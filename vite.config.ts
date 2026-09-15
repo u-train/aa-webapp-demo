@@ -25,9 +25,7 @@ export default defineConfig({
         babel({
             presets: [reactCompilerPreset()],
         }),
-        wayfinder({
-            formVariants: true,
-        }),
+        wayfinder(),
         typedCssModulesPlugin()
     ]),
     resolve: {
