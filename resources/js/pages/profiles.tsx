@@ -2,6 +2,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
 import appStyles from '@css/app.module.css';
+import NavigationBar from '@/components/navbar';
 
 export default function Profiles() {
     const {
@@ -11,18 +12,7 @@ export default function Profiles() {
         <>
             <Head title="Profiles" />
             <h1>Profiles</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/users/self">Goto My Profile</Link>
-                    </li>
-                    <li>
-                        <Link method="post" href="/logout">
-                            Logout
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            <NavigationBar />
             <table>
                 <caption>All Users</caption>
                 <thead>

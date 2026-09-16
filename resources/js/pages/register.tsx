@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import register from '@/wayfinder/routes/register';
+import NavigationBar from '@/components/navbar';
 
 export default function Register() {
     const {
@@ -11,15 +12,7 @@ export default function Register() {
         <>
             <Head title="Register" />
             <h1>Register for aa-webapp</h1>
-            {/* <nav>
-                <ul>
-                    {!isAuthenticated && <li><Link href={routes.login()}>Login</Link></li>}
-                    {!isAuthenticated && <li><Link href={routes.register()}>Register</Link></li>}
-                    {isAuthenticated && <li><Link href={routes.logout()}>Logout</Link></li>}
-                    {isAuthenticated && currentUser && <li><Link href={userRoutes.show(currentUser.email)}>View Profile</Link></li>}
-                    {isAdmin && <li><Link href={userRoutes.index()}>View all Profiles</Link></li>}
-                </ul>
-            </nav> */}
+            <NavigationBar />
 
             <form {...register.store.form()}>
                 <label htmlFor="name">Name</label>

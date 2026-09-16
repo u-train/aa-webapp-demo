@@ -1,3 +1,4 @@
+import NavigationBar from '@/components/navbar';
 import EmailVerificationNotificationController from '@/wayfinder/Laravel/Fortify/Http/Controllers/EmailVerificationNotificationController';
 import { Head } from '@inertiajs/react';
 
@@ -12,6 +13,7 @@ export default function VerifyEmail({
         <>
             <Head title="Email Verification" />
             <h1>Email Verification</h1>
+            <NavigationBar />
 
             {wasAccountMadeRecently ? (
                 <p>

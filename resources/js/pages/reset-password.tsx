@@ -1,3 +1,4 @@
+import NavigationBar from '@/components/navbar';
 import passwordRoutes from '@/wayfinder/routes/password';
 import styles from '@css/app.module.css';
 import { Head } from '@inertiajs/react';
@@ -12,6 +13,8 @@ export default function ResetPassword({
         <>
             <Head title="Reset Password" />
             <h1>Reset Password</h1>
+            <NavigationBar />
+
             {passwordResetMessage && (
                 <p>
                     {passwordResetMessage} Check your email for the reset link.

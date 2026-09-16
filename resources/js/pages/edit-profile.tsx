@@ -1,7 +1,8 @@
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 import appStyle from '@css/app.module.css';
+import NavigationBar from '@/components/navbar';
 
 export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
     const {
@@ -13,15 +14,7 @@ export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
         <>
             <Head title="Editing Profile" />
             <h1>Editing your profile</h1>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href={userRoutes.show(targetUser.email)}>
-                            Back to Profile
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            <NavigationBar />
             <form {...userRoutes.update.form(targetUser.email)}>
                 <label htmlFor="name">Name</label>
                 <input

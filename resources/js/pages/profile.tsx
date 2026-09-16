@@ -1,46 +1,29 @@
+import NavigationBar from '@/components/navbar';
+import { NavUrlEntry } from '@/components/navbar-url-entry';
 import { useAuthUser } from '@/hooks/useAuthUser';
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, usePage } from '@inertiajs/react';
 
 export default function Profile() {
     const {
-        props: { isAdmin, target_user: targetUser },
+        props: { target_user: targetUser },
     } = usePage<Inertia.Pages.Profile>();
     const currentUser = useAuthUser();
     const isCurrentUserProfile = targetUser.email === currentUser.email;
+    const editProfileUrl = userRoutes.edit(targetUser.email).url;
 
     return (
         <>
             <Head title="Profile" />
             <h1>{targetUser.name}'s Profile</h1>
-            <nav>
-                <ul>
-                    {isAdmin && (
-                        <li>
-                            <Link href="/users">See All Users</Link>
-                        </li>
-                    )}
-                    {!isCurrentUserProfile && (
-                        <li>
-                            <Link href="/users/self">My Profile</Link>
-                        </li>
-                    )}
-                    {isCurrentUserProfile && (
-                        <li>
-                            <Link href={userRoutes.edit(targetUser.email)}>
-                                Edit Account
-                            </Link>
-                        </li>
-                    )}
-                    <li>
-                        <Link method="post" href="/logout">
-                            Logout
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
-
+            <NavigationBar>
+                <NavUrlEntry
+                    show={isCurrentUserProfile}
+                    entry="Edit Profile"
+                    url={editProfileUrl}
+                />
+            </NavigationBar>
             <p>
                 Their email is {targetUser.email}.{' '}
                 {targetUser.updated_at !== null && (

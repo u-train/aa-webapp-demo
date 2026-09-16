@@ -1,6 +1,7 @@
 import passwordRoutes from '@/wayfinder/routes/password';
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import appStyle from '@css/app.module.css';
+import NavigationBar from '@/components/navbar';
 
 // Same deal as verify-email.tsx
 export default function ResetingPassword({
@@ -10,11 +11,12 @@ export default function ResetingPassword({
     email: string;
     token: string;
 }) {
-    console.log(usePage());
     return (
         <>
             <Head title="Reseting Password" />
             <h1>Reseting Password</h1>
+            <NavigationBar />
+
             <form {...passwordRoutes.update.form.post()}>
                 <div className={appStyle.inputEntry}>
                     <label htmlFor="email">Resetting for</label>
