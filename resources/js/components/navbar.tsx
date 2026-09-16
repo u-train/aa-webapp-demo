@@ -29,6 +29,11 @@ export default function NavigationBar({ children }: { children?: ReactNode }) {
                     </li>
                 )}
                 <NavUrlEntry
+                    show={!!user}
+                    entry="View My Profile"
+                    url={userRoutes.show(user?.email ?? '').url}
+                />
+                <NavUrlEntry
                     show={isAdmin}
                     entry="View all Profiles"
                     url={userRoutes.index().url}
