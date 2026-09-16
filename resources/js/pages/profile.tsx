@@ -1,3 +1,4 @@
+import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 
@@ -11,7 +12,7 @@ export default function Profile() {
             <nav>
                 <ul>
                     {isAdmin && <li><Link href="/users">See All Users</Link></li>}
-                    {isCurrentUserProfile && <li><Link href="/users/">Edit page</Link></li>}
+                    {isCurrentUserProfile && <li><Link href={userRoutes.edit(targetUser.email)}>Edit page</Link></li>}
                     <li><Link method='post' href="/logout">Logout</Link></li>
                 </ul>
             </nav>
