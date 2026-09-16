@@ -7,6 +7,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -45,5 +46,18 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function () {
             return Inertia::render('login', []);
         });
-    }
+
+        Fortify::registerView(function() {
+            return Inertia::render('register', []);
+        });
+
+        Fortify::verifyEmailView(function($request) {
+            $currentTime = Carbon::now();
+            $account_creation_time = $request->user()->created_at;
+            $minutes = $account_creation_time->diffInMinutes($currentTime);
+
+            return Inertia::render('verify-email', ['wasAccountMadeRecently' => $minutes < 10.0 ]);
+        });
+
+   }
 }
