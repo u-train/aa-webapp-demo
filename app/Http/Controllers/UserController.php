@@ -15,7 +15,19 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = $this->getAuthUser();
+        Gate::authorize('viewAny', $user);
+
+        $users = User::orderBy('id')->paginate(3);
+
+        return Inertia::render('profiles', [
+            /** @var User[] */
+            'users' => $users->items(),
+            'previousPage' => $users->previousPageUrl(),
+            'currentPage' => $users->currentPage(),
+            'nextPage' => $users->nextPageUrl(),
+            'lastPage' => $users->lastPage() 
+        ]);
     }
 
     /**
