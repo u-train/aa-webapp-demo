@@ -21,11 +21,11 @@ export default function Profile() {
                             <Link href="/users">See All Users</Link>
                         </li>
                     )}
-                    {!isCurrentUserProfile && <li>
-                        <Link href="/users/self">
-                            My Profile
-                        </Link>
-                    </li>}
+                    {!isCurrentUserProfile && (
+                        <li>
+                            <Link href="/users/self">My Profile</Link>
+                        </li>
+                    )}
                     {isCurrentUserProfile && (
                         <li>
                             <Link href={userRoutes.edit(targetUser.email)}>

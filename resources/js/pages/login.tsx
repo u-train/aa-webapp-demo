@@ -1,7 +1,7 @@
 import login from '@/wayfinder/routes/login';
 import password from '@/wayfinder/routes/password';
 import { Head, Link } from '@inertiajs/react';
-import styles from "@css/app.module.css";
+import styles from '@css/app.module.css';
 
 // Same as verify-email.tsx.
 export default function Login({
@@ -19,7 +19,9 @@ export default function Login({
             <h1>Login for aa-webapp</h1>
             <nav>
                 <ul>
-                    <li><Link href="/">Landing</Link></li>
+                    <li>
+                        <Link href="/">Landing</Link>
+                    </li>
                 </ul>
             </nav>
             {successfulResetPasswordMessage && (

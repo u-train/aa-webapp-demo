@@ -18,7 +18,7 @@ export default function ResetPassword({
                 </p>
             )}
 
-            {!passwordResetMessage &&
+            {!passwordResetMessage && (
                 <form {...passwordRoutes.email.form()}>
                     <div className={styles.inputEntry}>
                         <label htmlFor="email">Email</label>
@@ -26,7 +26,7 @@ export default function ResetPassword({
                     </div>
                     <button type="submit">Reset Password</button>
                 </form>
-            }
+            )}
         </>
     );
 }

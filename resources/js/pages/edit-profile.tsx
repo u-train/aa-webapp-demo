@@ -1,7 +1,7 @@
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import appStyle from "@css/app.module.css"
+import appStyle from '@css/app.module.css';
 
 export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
     const {
@@ -39,7 +39,9 @@ export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
                 />
                 <fieldset className={appStyle.changePasswordFieldset}>
                     <legend>Changing Password</legend>
-                    <p>Leave this blank if don't want to change your password.</p>
+                    <p>
+                        Leave this blank if don't want to change your password.
+                    </p>
                     <label htmlFor="current_password">Current password</label>
                     <input
                         type="password"
