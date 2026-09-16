@@ -9,10 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable(['name'])]
 class Role extends Model
 {
-    protected $primaryKey = 'name';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $casts = [
         'name' => UserRole::class,
     ];

@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->string('name')->primary();
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
 
         Schema::create('role_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('role_name')->constrained(column: 'name');
-            $table->primary(['user_id', 'role_name']);
+            $table->foreignId('role_id')->constrained();
+            $table->primary(['user_id', 'role_id']);
             $table->timestamps();
         });
     }
