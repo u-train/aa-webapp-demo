@@ -1,12 +1,15 @@
+import { useAuthUser } from '@/hooks/useAuthUser';
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 
 export default function Profile() {
     const {
-        props: { isAdmin, target_user: targetUser, currentUser },
+        props: { isAdmin, target_user: targetUser },
     } = usePage<Inertia.Pages.Profile>();
+    const currentUser = useAuthUser()
     const isCurrentUserProfile = targetUser.email === currentUser.email;
+    
     return (
         <>
             <Head title="Profile" />
