@@ -7,9 +7,9 @@ export default function Profile() {
     const {
         props: { isAdmin, target_user: targetUser },
     } = usePage<Inertia.Pages.Profile>();
-    const currentUser = useAuthUser()
+    const currentUser = useAuthUser();
     const isCurrentUserProfile = targetUser.email === currentUser.email;
-    
+
     return (
         <>
             <Head title="Profile" />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -10,13 +11,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
+use Inertia\Response as InertiaResponse;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): InertiaResponse
     {
         $user = $this->getAuthUser();
         Gate::authorize('viewAny', $user);
@@ -36,7 +38,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $email)
+    public function show(string $email): InertiaResponse|RedirectResponse
     {
         $user = $this->getAuthUser();
 
@@ -57,7 +59,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $target_email)
+    public function edit(string $target_email): InertiaResponse
     {
         $target_user = User::where('email', $target_email)->firstOrFail();
 
@@ -71,7 +73,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $target_email)
+    public function update(Request $request, string $target_email): RedirectResponse
     {
         $target_user = User::where('email', $target_email)->firstOrFail();
 
@@ -119,7 +121,7 @@ class UserController extends Controller
         return Auth::user();
     }
 
-    private function toUser($x): User
+    private function toUser(mixed $x): User
     {
         return $x;
     }

@@ -51,6 +51,7 @@ While it's a small project, TypeScript I find is simply better to adopt early on
 Since I used a starter-kit, I also used `npm`, `vite`, and `vite+`. These are simply the recommended defaults.
 
 The design itself, beyond the choices, is an average Laravel application.
+
 - `app/Actions` mainly has Fortify related items;
 - `app/Http` has one controller, the user. Has user pages there;
 - `app/Middleware` has the middleware for Inertia. Some props are injected in there, such as the user, if authenticated;
@@ -62,4 +63,3 @@ The design itself, beyond the choices, is an average Laravel application.
 And so on...
 
 Lastly, I tried balancing getting things done and spending too much time on one thing. So, I tried to leave designing the CSS for example, for later, as that's easy enough for any future dev to do. However, labelling input I found more vital, for accessiblity purposes. In short, good bones to work on top off.
-
