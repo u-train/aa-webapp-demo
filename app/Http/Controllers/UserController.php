@@ -26,7 +26,7 @@ class UserController extends Controller
             'previousPage' => $users->previousPageUrl(),
             'currentPage' => $users->currentPage(),
             'nextPage' => $users->nextPageUrl(),
-            'lastPage' => $users->lastPage() 
+            'lastPage' => $users->lastPage(),
         ]);
     }
 
@@ -40,7 +40,6 @@ class UserController extends Controller
         if ($email === 'self') {
             return to_route('users.show', ['user' => $user->email]);
         }
-
         $target_user = User::where('email', $email)->firstOrFail();
 
         Gate::authorize('view', $target_user);
