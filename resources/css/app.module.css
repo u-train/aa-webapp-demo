@@ -77,18 +77,23 @@ form {
     flex-direction: column;
     gap: 0.5rem;
     align-self: center;
-    min-width: min(75%, 20rem);
 }
 
 form>button[type='submit'] {
     justify-self: center;
     max-width: fit-content;
+    
 }
 
 form>.inputEntry {
     display: flex;
     justify-content: space-between;
     gap: 0.25rem;
+}
+
+form input {
+    min-width: 6rem;
+    width: 70%;
 }
 
 form>.errors {
