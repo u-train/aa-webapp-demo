@@ -1,6 +1,7 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
+import appStyles from "@css/app.module.css"
 
 export default function Profiles() {
     const {
@@ -13,7 +14,7 @@ export default function Profiles() {
             <nav>
                 <ul>
                     <li>
-                        <Link href="/users">See All Users</Link>
+                        <Link href="/users/self">Goto My Profile</Link>
                     </li>
                     <li>
                         <Link method="post" href="/logout">
@@ -66,9 +67,9 @@ export default function Profiles() {
                     )}
                 </tbody>
             </table>
-            <footer>
+            <footer className={appStyles.profilesFooter}>
                 {<Link href={userRoutes.index()}>{'<<'}</Link>}
-                {previousPage && <Link href={previousPage}>{'<'}</Link>}
+                {previousPage && <Link disabled={previousPage == null} href={previousPage}>{'<'}</Link>}
                 <span>Page {currentPage}</span>
                 {nextPage && <Link href={nextPage}>{'>'}</Link>}
                 {

@@ -1,6 +1,7 @@
 import userRoutes from '@/wayfinder/routes/users';
 import { Inertia } from '@/wayfinder/types';
 import { Head, Link, usePage } from '@inertiajs/react';
+import appStyle from "@css/app.module.css"
 
 export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
     const {
@@ -13,9 +14,13 @@ export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
             <Head title="Editing Profile" />
             <h1>Editing your profile</h1>
             <nav>
-                <Link href={userRoutes.show(targetUser.email)}>
-                    Back to Profile
-                </Link>
+                <ul>
+                    <li>
+                        <Link href={userRoutes.show(targetUser.email)}>
+                            Back to Profile
+                        </Link>
+                    </li>
+                </ul>
             </nav>
             <form {...userRoutes.update.form(targetUser.email)}>
                 <label htmlFor="name">Name</label>
@@ -32,8 +37,9 @@ export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
                     id="email"
                     defaultValue={targetUser.email}
                 />
-                <fieldset>
+                <fieldset className={appStyle.changePasswordFieldset}>
                     <legend>Changing Password</legend>
+                    <p>Leave this blank if don't want to change your password.</p>
                     <label htmlFor="current_password">Current password</label>
                     <input
                         type="password"
@@ -58,14 +64,16 @@ export default function EditProfile({ targetUser }: Inertia.Pages.EditProfile) {
 
                 <button type="submit">Submit</button>
                 {errorEntries.length > 0 && (
-                    <div>
-                        <p>Could not login because:</p>
-                        <ul>
-                            {errorEntries.map(([key, error]) => (
-                                <li key={key}>{error}</li>
-                            ))}
-                        </ul>
-                    </div>
+                    <fieldset className={appStyle.errors}>
+                        <div>
+                            <p>Could not edit because:</p>
+                            <ul>
+                                {errorEntries.map(([key, error]) => (
+                                    <li key={key}>{error}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </fieldset>
                 )}
             </form>
         </>

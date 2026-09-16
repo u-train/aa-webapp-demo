@@ -1,3 +1,16 @@
+/*
+    Reset sample from: https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+*:not(dialog) {
+    margin: 0;
+}
+
 html {
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
@@ -5,12 +18,112 @@ html {
         'Noto Color Emoji';
 
     font-family: var(--font-sans);
+    line-height: 1.5;
 }
 
-.somethingStrange {
-    color: red;
+main {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
-.somethingBig {
-    font-size: xx-small;
+nav {
+    background-color: rgb(224, 223, 223);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+nav>ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+nav>ul>li>a {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 0.25rem;
+    display: block;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+nav>ul>li>button {
+    all: unset;
+    display: block;
+    cursor: pointer;
+
+    text-decoration: none;
+    color: black;
+
+    background-color: white;
+    padding: 0.25rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-self: center;
+    min-width: min(75%, 20rem);
+}
+
+form>button[type='submit'] {
+    justify-self: center;
+    max-width: fit-content;
+}
+
+form>.inputEntry {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.25rem;
+}
+
+form>.errors {
+    border-color: darkred;
+    color: darkred;
+}
+
+form>a {
+    max-width: fit-content;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table>thead {
+    background-color: rgb(239, 239, 239);
+}
+
+table td, table tr, table th {
+    text-align: left;
+    padding: 0.25rem;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.profilesFooter {
+    margin-top: 1rem;
+    align-self: center;
+    display:flex;
+    gap: 1rem;
+}
+
+.changePasswordFieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }

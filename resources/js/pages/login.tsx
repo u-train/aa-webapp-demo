@@ -1,6 +1,7 @@
 import login from '@/wayfinder/routes/login';
 import password from '@/wayfinder/routes/password';
 import { Head, Link } from '@inertiajs/react';
+import styles from "@css/app.module.css";
 
 // Same as verify-email.tsx.
 export default function Login({
@@ -18,30 +19,31 @@ export default function Login({
             <h1>Login for aa-webapp</h1>
             <nav>
                 <ul>
-                    <Link href="/">Welcome Page</Link>
+                    <li><Link href="/">Landing</Link></li>
                 </ul>
             </nav>
             {successfulResetPasswordMessage && (
                 <p>{successfulResetPasswordMessage}</p>
             )}
             <form {...login.store.form()}>
-                <div>
-                    <label htmlFor="email">Email: </label>
+                <div className={styles.inputEntry}>
+                    <label htmlFor="email">Email:</label>
                     <input type="email" name="email" id="email" />
                 </div>
-                <div>
-                    <label htmlFor="password">Password: </label>
+                <div className={styles.inputEntry}>
+                    <label htmlFor="password">Password:</label>
                     <input type="password" name="password" id="password" />
                 </div>
                 {errorEntries.length > 0 && (
-                    <div>
+                    <fieldset className={styles.errors}>
+                        <legend>Errors</legend>
                         <p>Could not login because:</p>
                         <ul>
                             {errorEntries.map(([key, error]) => (
                                 <li key={key}>{error}</li>
                             ))}
                         </ul>
-                    </div>
+                    </fieldset>
                 )}
                 <Link href={password.request()}>Forgot Password?</Link>
                 <button type="submit">Login</button>
