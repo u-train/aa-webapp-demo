@@ -88,10 +88,11 @@ class UserController extends Controller
                 'max:255',
                 Rule::unique(User::class)->ignore($target_user),
             ],
-            'new_password' => ['nullable', Password::default(), 'confirmed'],
+            'new_password' => ['nullable', 'required_unless:current_password,null', Password::default(), 'confirmed'],
             'current_password' => ['nullable', 'required_unless:new_password,null', 'current_password'],
         ], [
-            'current_password.required_unless' => 'The current password must be filled.',
+            'current_password.required_unless' => 'The password is incorrect.',
+            'new_password.required_unless' => 'The new password is missing.',
         ]);
 
         if ($input['new_password']) {
