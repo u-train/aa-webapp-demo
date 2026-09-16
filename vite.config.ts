@@ -8,7 +8,6 @@ import path from 'path';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 import typedCssModulesPlugin from 'vite-plugin-typed-css-modules';
 
-
 export default defineConfig({
     plugins: lazyPlugins(() => [
         laravel({
@@ -26,12 +25,12 @@ export default defineConfig({
             presets: [reactCompilerPreset()],
         }),
         wayfinder(),
-        typedCssModulesPlugin()
+        typedCssModulesPlugin(),
     ]),
     resolve: {
         alias: {
-            "@css": path.resolve(__dirname, "./resources/css")
-        }
+            '@css': path.resolve(__dirname, './resources/css'),
+        },
     },
     server: {
         watch: {
@@ -73,6 +72,6 @@ export default defineConfig({
             'composer.json',
             'resources/js/components/ui/*',
             'resources/views/mail/*',
-        ]
+        ],
     },
 });

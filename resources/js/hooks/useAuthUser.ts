@@ -1,11 +1,13 @@
-import { usePage } from "@inertiajs/react";
+import { usePage } from '@inertiajs/react';
 
 export function useAuthUser() {
-    const { props: { currentUser } } = usePage();
+    const {
+        props: { currentUser },
+    } = usePage();
 
-    if (currentUser  === null) {
-        throw new Error("Expected to have an authenticated user");
+    if (currentUser === null) {
+        throw new Error('Expected to have an authenticated user');
     }
 
-    return currentUser ;
+    return currentUser;
 }
