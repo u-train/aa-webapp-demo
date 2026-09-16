@@ -41,7 +41,7 @@ export default function Profiles() {
                                 : 'Unknown';
                             const isVerified = email_verified_at !== null;
                             return (
-                                <tr>
+                                <tr key={email}>
                                     <td>{name}</td>
                                     <td>{email}</td>
                                     <td>{isVerified ? 'Yes' : 'No'}</td>
