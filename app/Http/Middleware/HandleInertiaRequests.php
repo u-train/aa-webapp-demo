@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -35,12 +36,24 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $currentUser = $request->user();
+        if ($currentUser) {
+            $isAdmin = $currentUser->isAdmin();
+            $isUser = $currentUser->isUser();
+            $isAuthenticated = true;
+        } else {
+            $isAdmin = false;
+            $isUser = false;
+            $isAuthenticated = false;
+        }
+
         return [
             ...parent::share($request),
             'name' => (string) config('app.name'),
-            'auth' => [
-                'user' => $request->user(),
-            ],
+            'currentUser' => $currentUser,
+            'isAdmin' => $isAdmin,
+            'isUser' => $isUser,
+            'isAuthenticated' => $isAuthenticated,
         ];
     }
 }
