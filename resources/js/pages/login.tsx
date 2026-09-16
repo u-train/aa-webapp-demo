@@ -1,14 +1,21 @@
 import login from "@/wayfinder/routes/login";
-import { Head, usePage } from "@inertiajs/react";
+import password from "@/wayfinder/routes/password";
+import { Head, Link } from "@inertiajs/react";
 
-export default function Login() {
-    const { props: { errors } } = usePage()
-
+// Same as verify-email.tsx.
+export default function Login({ errors, successfulResetPasswordMessage }: { errors: Record<string, string>, successfulResetPasswordMessage?: string }) {
     const errorEntries = Object.entries(errors);
+
     return (
         <>
             <Head title="Login" />
             <h1>Login for aa-webapp</h1>
+            <nav>
+                <ul>
+                    <Link href="/">Welcome Page</Link>
+                </ul>
+            </nav>
+            {successfulResetPasswordMessage && <p>{successfulResetPasswordMessage}</p>}
             <form {...login.store.form()}>
                 <div>
                     <label htmlFor="email">Email: </label>
@@ -26,6 +33,7 @@ export default function Login() {
                         }
                     </ul>
                 </div>}
+                <Link href={password.request()}>Forgot Password?</Link>
                 <button type="submit">Login</button>
             </form>
         </>
