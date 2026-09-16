@@ -6,6 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -54,15 +57,62 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $target_email)
     {
-        //
+        $target_user = User::where('email', $target_email)->firstOrFail();
+
+        Gate::authorize('update', $target_user);
+
+        return Inertia::render('edit-profile', [
+            'targetUser' => $this->toUser($target_user),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) {}
+    public function update(Request $request, string $target_email)
+    {
+        $target_user = User::where('email', $target_email)->firstOrFail();
+
+        Gate::authorize('update', $target_user);
+
+        $input = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique(User::class)->ignore($target_user),
+            ],
+            'new_password' => ['nullable', Password::default(), 'confirmed'],
+            'current_password' => ['nullable', 'required_unless:new_password,null', 'current_password'],
+        ], [
+            'current_password.required_unless' => 'The current password must be filled.',
+        ]);
+
+        if ($input['new_password']) {
+            $target_user->forceFill([
+                'password' => Hash::make($input['new_password']),
+            ])->save();
+        }
+
+        if ($input['email'] !== $target_email) {
+            $target_user->forceFill([
+                'email' => $input['email'],
+                'email_verified_at' => null,
+            ])->save();
+
+            $target_user->sendEmailVerificationNotification();
+        }
+
+        $target_user->fill([
+            'name' => $input['name'],
+        ])->save();
+
+        return redirect()->route('users.edit', ['user' => $input['email']]);
+    }
 
     private function getAuthUser(): User
     {
