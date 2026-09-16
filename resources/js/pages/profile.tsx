@@ -1,8 +1,5 @@
+import { Inertia } from '@/wayfinder/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import styles from "@css/app.module.css"
-import clsx from "clsx"
-import { Inertia } from "@/wayfinder/types"
-import { useAuthUser } from '@/hooks/useAuthUser';
 
 export default function Profile() {
     const { props: { isAdmin, isCurrentPage, target_user: user } } = usePage<Inertia.Pages.Profile>()

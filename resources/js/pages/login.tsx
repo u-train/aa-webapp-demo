@@ -1,4 +1,4 @@
-import login from "@/routes/login";
+import login from "@/wayfinder/routes/login";
 import { Head, usePage } from "@inertiajs/react";
 
 export default function Login() {

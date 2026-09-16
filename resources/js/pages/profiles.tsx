@@ -1,11 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import styles from "@css/app.module.css"
-import clsx from "clsx"
+import userRoutes from "@/wayfinder/routes/users"
 import { Inertia } from '@/wayfinder/types';
-import { email } from '@/routes/password';
-import routes from '@/wayfinder/routes';
-import userRoutes from "@/routes/users"
-
 
 export default function Profiles() {
     const { props: { users, previousPage, nextPage, currentPage, lastPage } } = usePage<Inertia.Pages.Profiles>()
