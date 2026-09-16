@@ -4,8 +4,8 @@ export function useCurrentUserInfo() {
     const page = usePage();
 
     return {
-        user: page.props.currentUser,
-        isAdmin: page.props.isAdmin,
-        isUser: page.props.isUser,
+        user: page.props.currentUser ?? null,
+        isAdmin: page.props.isAdmin ?? false,
+        isUser: page.props.isUser ?? false,
     };
 }
