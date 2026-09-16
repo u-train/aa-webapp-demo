@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
 use Carbon\Carbon;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -55,7 +53,7 @@ class FortifyServiceProvider extends ServiceProvider
             $minutes = $account_creation_time->diffInMinutes($currentTime);
 
             return Inertia::render('verify-email', [
-                'wasAccountMadeRecently' => $minutes < 10.0
+                'wasAccountMadeRecently' => $minutes < 10.0,
             ]);
         });
 
@@ -68,7 +66,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView(function ($request) {
             return Inertia::render('reset-complete-password', [
                 'email' => $request->input('email'),
-                'token' => $request->route('token')
+                'token' => $request->route('token'),
             ]);
         });
     }

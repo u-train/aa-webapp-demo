@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,11 +47,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
-    public function isAdmin(): bool {
-        return $this->roles->contains("name", "admin");
+    public function isAdmin(): bool
+    {
+        return $this->roles->contains('name', 'admin');
     }
 
-    public function isUser(): bool {
-        return $this->roles->contains("name", "user");
+    public function isUser(): bool
+    {
+        return $this->roles->contains('name', 'user');
     }
 }

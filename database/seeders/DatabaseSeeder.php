@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // There are two known roles for the aa-webapp: users and admins.
-        // We seed them here for convenience. 
-        Role::updateOrCreate(["name" => "user"]);
-        Role::updateOrCreate(["name" => "admin"]);
+        // We seed them here for convenience.
+        Role::updateOrCreate(['name' => 'user']);
+        Role::updateOrCreate(['name' => 'admin']);
     }
 }
