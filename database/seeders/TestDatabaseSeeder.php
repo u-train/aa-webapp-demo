@@ -28,6 +28,6 @@ class TestDatabaseSeeder extends Seeder
         $admin->roles()->attach(['user', 'admin']);
 
         $user = User::factory()->create(['name' => 'rando', 'email' => 'rando@aa-webapp.com', 'password' => 'rando']);
-        $admin->roles()->attach(['user']);
+        $user->roles()->attach(['user']);
     }
 }
