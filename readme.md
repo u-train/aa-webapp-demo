@@ -62,4 +62,20 @@ The design itself, beyond the choices, is an average Laravel application.
 
 And so on...
 
-Lastly, I tried balancing getting things done and spending too much time on one thing. So, I tried to leave designing the CSS for example, for later, as that's easy enough for any future dev to do. However, labelling input I found more vital, for accessiblity purposes. In short, good bones to work on top off.
+### Immediate Future Work
+
+To make sure I got to MVP in time, I skimped on some tasks. However, I tried keeping it to non-critical, possibly straightforward ones. So, between 100% clean CSS vs. making sure 403 error codes render as 404s, I picked the latter as security is more important.
+
+With that, I want to mention further work I'd do from the top of my head:
+
+- Unfortunately, there are some user-enumeration attacks possible with registration and password reseting (as they says if an email is valid or not). The solution to those is probably overriding the controllers responsible for those endpoints and making them respond similarly regardless if the email is valid or invalid.
+- Testing the application to verify features work. Currently, there is only an example test. Given time, I would have liked to do more thorough testing (snapshots, testing features work like profile edits work, and so on).
+- `app.module.css` has two rules for `.profilesFooter` and `.changePasswordFieldset` that should be split off to its own modules and imported accordingly.
+- The form related CSS should probably be split into a `form.module.css` file as well (seeing that not every page needs that styling).
+- I made use of just the HTML `form` element, when InertiaJS provides a `Form` component that prevent full-page reloads (with that, saving inputs automatically for example). I avoided only because of lack of familiarity and time rush. Though, it was really such an easy win that I wish I did.
+- Refactoring some common patterns into components like the error-handling in forms.
+- As mentioned in `verify-email.tsx`, I would probably see about disabling Fortify's views and then creating my own endpoints replacing them.
+- I would also want to check the currently dependencies list to see if they are all required or not as they came mostly from a starter-kit. For example, vetting `concurrently` in `package.json` to make sure it can be removed (at first blush, no longer used).
+- On a similar note, I believe there are packages that are out of date, so I would seek about upgrading them. I tried before, but that led to breakages that would have consumed time to fix that should be spent on other tasks.
+
+Overall, I like to think that I still gave a good baseline. Especially with notes like the above, the developer I'm handing this off to should be able to continue development, have a clear idea of next steps, and possibly gain easy wins.
